@@ -3,28 +3,24 @@
 # pip install pillow
 # pip install cairosvg  
 # if not working pipe use conda
-# conda install -c conda-forge cairosvg
+#conda install -c conda-forge cairosvg
+
 
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFileDialog, QVBoxLayout, QWidget
-from PyQt5.QtGui import QPixmap, QIcon
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 from PIL import Image
+from PyQt5.QtGui import QIcon
 import os
 import tempfile
 import cairosvg
 
-def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller bundle """
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
-
 class IconApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowIcon(QIcon(resource_path("assets/app_icon_16×16.ico")))
-        self.setWindowTitle("Icons Logo Maker by AJ")
+        self.setWindowIcon(QIcon("assets/app_icon_16×16.ico"))
+        self.setWindowTitle(" Icons Logo Maker by AJ")
         self.file = None
         self.temp_png = None  # For SVG conversion
         layout = QVBoxLayout()
@@ -37,9 +33,7 @@ class IconApp(QMainWindow):
             b.clicked.connect(func)
             layout.addWidget(b)
 
-        w = QWidget()
-        w.setLayout(layout)
-        self.setCentralWidget(w)
+        w = QWidget(); w.setLayout(layout); self.setCentralWidget(w)
 
     def load(self):
         f, _ = QFileDialog.getOpenFileName(self, "Open", "", "Images (*.png *.jpg *.jpeg *.svg)")
@@ -58,9 +52,8 @@ class IconApp(QMainWindow):
             return
         out, _ = QFileDialog.getSaveFileName(self, "Save ICO", os.path.join(os.path.dirname(self.file), "icon.ico"), "ICO Files (*.ico)")
         if out:
-            Image.open(self.file).convert("RGBA").resize((256, 256)).save(out, format="ICO")
+            Image.open(self.file).convert("RGBA").resize((256,256)).save(out, format="ICO")
 
 app = QApplication(sys.argv)
-win = IconApp()
-win.show()
+win = IconApp(); win.show()
 sys.exit(app.exec_())

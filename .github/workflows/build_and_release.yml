@@ -25,7 +25,12 @@ jobs:
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller icomaker.py --noconfirm --onefile --windowed --icon=assets/app_icon_16×16.ico
+          pyinstaller icomaker.py ^
+            --noconfirm ^
+            --onefile ^
+            --windowed ^
+            --icon=assets/app_icon_32×32.ico ^
+            --add-data "assets/app_icon_16×16.ico;assets"
 
       - name: Upload EXE as Artifact
         uses: actions/upload-artifact@v4
