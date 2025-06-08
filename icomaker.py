@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QFil
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 from PIL import Image
+from PyQt5.QtGui import QIcon
 import os
 import tempfile
 import cairosvg
@@ -18,7 +19,8 @@ import cairosvg
 class IconApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("To ICO 256x256")
+        self.setWindowIcon(QIcon("assets/app_icon_32×32.ico"))
+        self.setWindowTitle(" Icons Logo Maker by AJ")
         self.file = None
         self.temp_png = None  # For SVG conversion
         layout = QVBoxLayout()
