@@ -85,10 +85,10 @@ python icomaker.py
 
 ## 📸 Screenshots
 
-```markdown
+
 ![Main Window](assets/screenshot_main.png)
 ![Conversion Success](assets/screenshot_success.png)
-```
+
 
 ---
 
