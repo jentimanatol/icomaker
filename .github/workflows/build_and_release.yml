@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*'  # Trigger only on version tags like v1.0
+      - 'v*'  # e.g. v1.0
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller icomaker.py --noconfirm --onefile --windowed --icon=assets/app_icon_256×256.ico
+          pyinstaller icomaker.py --noconfirm --onefile --windowed --icon=assets/app_icon_32×32.ico
 
       - name: Upload EXE as Artifact
         uses: actions/upload-artifact@v4
