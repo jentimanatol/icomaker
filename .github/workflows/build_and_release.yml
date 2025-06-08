@@ -3,14 +3,14 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*'  # Trigger on version tags like v1.0
+      - 'v*'  # Trigger only on version tags like v1.0
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -18,18 +18,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pyinstaller pillow cairosvg PyQt5
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller icomaker.py ^
-            --noconfirm ^
-            --onefile ^
-            --windowed ^
-            --icon=assets/app_icon_256×256.ico
+          pyinstaller icomaker.py --noconfirm --onefile --windowed --icon=assets/app_icon_256×256.ico
 
       - name: Upload EXE as Artifact
         uses: actions/upload-artifact@v4
