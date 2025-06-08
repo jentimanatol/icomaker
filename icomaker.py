@@ -19,7 +19,7 @@ import cairosvg
 class IconApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowIcon(QIcon("assets/app_icon_32×32.ico"))
+        self.setWindowIcon(QIcon("assets/app_icon_16×16.ico"))
         self.setWindowTitle(" Icons Logo Maker by AJ")
         self.file = None
         self.temp_png = None  # For SVG conversion
